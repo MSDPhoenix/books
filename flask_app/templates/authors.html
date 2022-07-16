@@ -12,9 +12,9 @@
 </head>
 <body>
 {% block body %}
-<div id ="wrapper" class="container bg-info">
+<div id ="wrapper" class="container bg-info fs-3">
     <div class="row py-5">
-        <div class="col bg-light fs-3">
+        <div class="col bg-light">
             <h1 class="pb-4 bg-warning">New Author</h1>
             <form action="/authors/save/" method="'">
                 <label for="name" class="p-3 flex col-3">Name: </label>
@@ -26,9 +26,12 @@
         </div>
         <div class="col bg-light">
             <h1 class="pb-4 bg-warning">All Authors</h1>
-            <div id="authors_list" class="w-100 border border-dark border-3">
-
+            <div id="authors_list" class="w-100 border border-dark border-3 p-3">
+                {% for author in authors %}
+                    <a href="/authors/{{author.id}}">{{author.name}}</a><br>
+                {% endfor %}
             </div>
+            <a class="d-inline-block py-5" href="/books/">Add Book</a>
         </div>
     </div>
 

@@ -10,7 +10,12 @@ class Author():
 
     @classmethod
     def get_all(cls):
-        pass
+        query = 'SELECT * FROM authors;'
+        results = connectToMySQL('books').query_db(query)
+        authors = []
+        for author in results:
+            authors.append(cls(author))
+        return authors
 
     @classmethod
     def get_one(cls,data):
