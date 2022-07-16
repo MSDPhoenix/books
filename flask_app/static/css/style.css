@@ -1,0 +1,17 @@
+* {
+    margin:0px;
+    border:0px;
+    padding:0px;
+    box-sizing: border-box;
+    vertical-align: top;
+    outline: red 1px dotted;
+}
+#wrapper {
+    min-height: 100vh;
+}
+#authors_list {
+    min-height: 220px;
+}
+input[type="submit"] {
+    box-shadow: 5px 5px 5px black;
+}
