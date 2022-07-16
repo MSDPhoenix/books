@@ -11,13 +11,15 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
 {% block body %}
+
 <div id ="wrapper" class="container bg-info fs-3">
     <div class="row py-5">
         <div class="col bg-light">
             <h1 class="pb-4 bg-warning">New Author</h1>
-            <form action="/authors/save/" method="'">
-                <label for="name" class="p-3 flex col-3">Name: </label>
+            <form action="/authors/save/" method="post">
+                <label for="name" class="p-3 col-3">Name: </label>
                 <div class="col col-8 d-inline-block">
                     <input type="text" name="name" id="xxxx" class="w-100 p-3 border border-dark border-3">
                     <input type="submit" value="Create" class="px-5 py-1 mt-5 border border-dark border-3">
@@ -34,15 +36,7 @@
             <a class="d-inline-block py-5" href="/books/">Add Book</a>
         </div>
     </div>
-
-
-
 </div>
-
-
-
-
-    
 
 {% endblock body %}
 <script type="text/javascript" src="{{ url_for('static',filename='js/script.js')}}"></script>

@@ -1,20 +1,25 @@
 from flask_app import app
 from flask import render_template,redirect,request,session,flash
-from flask_app.models import book
+from flask_app.models.book import Book
 
 
-@app.route('/books')
+@app.route('/books/')
 def books():
-    pass
+    return render_template('books.html',books=Book.get_all())
 
 @app.route('/books/<int:book_id>/')
 def book(book_id):
     pass
 
 
-@app.route('/books/save/<int:book_id>/')
+@app.route('/books/save/',methods=['POST'])
 def book_save():
-    pass
+    data = {
+        'title': request.form['title'],
+        'num_of_pages': request.form['num_of_pages']
+        }
+    Book.save(data)
+    return redirect('/books/')
 
 @app.route('/books/update/<int:book_id>/')
 def book_update():

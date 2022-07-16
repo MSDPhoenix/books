@@ -11,7 +11,12 @@ class Book():
 
     @classmethod
     def get_all(cls):
-        pass
+        query = 'SELECT * FROM books;'
+        results = connectToMySQL('books').query_db(query)
+        books = []
+        for book in results:
+            books.append(cls(book))
+        return books
 
     @classmethod
     def get_one(cls,data):
@@ -19,7 +24,11 @@ class Book():
 
     @classmethod
     def save(cls,data):
-        pass
+        query = """
+                INSERT INTO books (title,num_of_pages)
+                VALUES (%(title)s,%(num_of_pages)s)
+                """
+        return connectToMySQL('books').query_db(query,data)
 
     @classmethod
     def delete(cls,data):

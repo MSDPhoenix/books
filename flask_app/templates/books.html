@@ -1,4 +1,34 @@
-{ block body }
-    
+{% extends 'authors.html' %}
 
-{ endblock body }
+{% block body %}
+    
+<div id ="wrapper" class="container bg-info fs-3">
+    <div class="row py-5">
+        <div class="col bg-light">
+            <h1 class="pb-4 bg-warning">New Book</h1>
+            <form action="/books/save/" method="post">
+                <div class="colxxx col-5 d-inline-block">
+                    <label for="title" class="py-3 mb-4 d-block">Title: </label>
+                    <label for="num_of_pages" class="py-3 col-3xxx">Number of pages: </label>
+                </div>
+                
+                <div class="colxxx col-6 d-inline-block">
+                    <input type="text" name="title" id="xxxx" class="w-100 p-3 mb-3 border border-dark border-3">
+                    <input type="text" name="num_of_pages" id="xxxx" class="w-100 p-3 border border-dark border-3">
+                    <input type="submit" value="Create" class="px-5 py-1 mt-5 border border-dark border-3">
+                </div>
+            </form>
+        </div>
+        <div class="col bg-light">
+            <h1 class="pb-4 bg-warning">All Books</h1>
+            <div id="authors_list" class="w-100 border border-dark border-3 p-3">
+                {% for book in books %}
+                    <a href="/books/{{book.id}}">{{book.title}}</a><br>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <a class="d-inline-block py-5xxxxx" href="/authors/">Home</a>
+</div>
+
+{% endblock body %}

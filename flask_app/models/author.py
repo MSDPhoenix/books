@@ -23,7 +23,11 @@ class Author():
 
     @classmethod
     def save(cls,data):
-        pass
+        query = """
+                INSERT INTO authors (name)
+                VALUES (%(name)s)
+                """
+        return connectToMySQL('books').query_db(query,data)
 
     @classmethod
     def delete(cls,data):

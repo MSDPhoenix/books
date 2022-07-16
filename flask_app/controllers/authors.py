@@ -1,22 +1,24 @@
 from crypt import methods
 from flask_app import app
 from flask import render_template,redirect,request,session,flash
-from flask_app.models import book
+from flask_app.models.book import Book
 from flask_app.models.author import Author
 
 @app.route('/authors/')
 def authors():
-    
     return render_template('authors.html', authors=Author.get_all())
 
 @app.route('/authors/<int:author_id>/')
 def author(author_id):
     pass
 
-
 @app.route('/authors/save/',methods=['POST'])
 def author_save():
-    pass
+    data = {
+        'name': request.form['name']
+        }
+    Author.save(data)
+    return redirect('/authors/')
 
 
 @app.route('/authors/update/<int:author_id>/')
