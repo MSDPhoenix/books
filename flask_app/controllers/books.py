@@ -9,7 +9,7 @@ def books():
 
 @app.route('/books/<int:book_id>/')
 def book(book_id):
-    pass
+    return render_template('book.html',book=Book.get_one(book_id))
 
 
 @app.route('/books/save/',methods=['POST'])

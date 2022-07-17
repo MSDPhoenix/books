@@ -10,7 +10,22 @@ def authors():
 
 @app.route('/authors/<int:author_id>/')
 def author(author_id):
-    pass
+    data = {
+        'author_id':author_id
+    }
+    author=Author.get_one(data)
+    all_books=Book.get_all()
+    all_books_ids=[]
+    author_favorites_ids=[]
+    other_books=[]
+    for book in all_books:
+        all_books_ids.append(book.id)
+    for book in author.favorites:
+        author_favorites_ids.append(book.id)
+    for book_id in all_books_ids:
+        if book_id not in author_favorites_ids:
+            other_books.append(Book.get_one({'book_id':book_id}))
+    return render_template('author.html',author=author, other_books=other_books)
 
 @app.route('/authors/save/',methods=['POST'])
 def author_save():
@@ -21,9 +36,14 @@ def author_save():
     return redirect('/authors/')
 
 
-@app.route('/authors/update/<int:author_id>/')
-def author_update():
-    pass
+@app.route('/authors/add_favorite/<int:author_id>/',methods=['POST'])
+def add_to_favorites(author_id):
+    data = {
+        'book_id':request.form['book_id'],
+        'author_id':author_id
+    }
+    Author.add_to_favorites(data)
+    return redirect('/authors/'+str(author_id))
 
 @app.route('/authors/edit/<int:author_id>/')
 def author_edit():
