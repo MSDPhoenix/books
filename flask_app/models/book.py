@@ -50,6 +50,14 @@ class Book():
         return connectToMySQL('books').query_db(query,data)
 
     @classmethod
+    def add_to_favorites(cls,data):
+        query = """
+                INSERT INTO favorites (author_id,book_id)
+                VALUES (%(author_id)s, %(book_id)s) 
+                """
+        connectToMySQL('books').query_db(query,data)
+
+    @classmethod
     def delete(cls,data):
         pass
 

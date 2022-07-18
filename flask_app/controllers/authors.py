@@ -37,7 +37,7 @@ def author_save():
 
 
 @app.route('/authors/add_favorite/<int:author_id>/',methods=['POST'])
-def add_to_favorites(author_id):
+def add_favorite_book_to_author(author_id):
     data = {
         'book_id':request.form['book_id'],
         'author_id':author_id

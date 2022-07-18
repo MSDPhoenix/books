@@ -1,4 +1,40 @@
-{ block body }
-    
+{% extends 'authors.html' %}
+{% block body %}
 
-{ endblock body }
+<div id ="wrapper" class="container bg-info fs-3">
+    <div class="row py-5">
+        <div class="col bg-light">
+            <h1 class="pb-4 bg-warning">Title: {{book.title}}</h1>
+            <p for="name" class="p-3">Favorited by: </p>
+            {% for author in book.favorites %}
+                    <p class="ms-5"><a href="/authors/{{author.id}}">{{author.name}}</a></p>
+            {% endfor %}
+            <a class="d-inline-block py-5" href="/authors/">Home</a>
+        </div>        
+        <div class="col bg-light">
+            <h1 class="pb-4 bg-warning">Add Book's Favorite</h1>
+            <form action="/books/add_favorite/{{book.id}}/" method="post">
+                <label for="name" class="p-3 col-3">Book: </label>
+                <select name="author_id" id="" class="col-8 p-3 h-100 d-inline-block color-warning">
+                    {% for author in other_authors %}
+                        <option value="{{author.id}}" >{{author.name}}</option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="Add" class="px-5 py-1 m-5 border border-dark border-3">
+
+
+
+{#              <div class="col col-8 d-inline-block">
+                    <input type="text" name="name" id="xxxx" class="w-100 p-3 border border-dark border-3">
+                    <input type="submit" value="Create" class="px-5 py-1 mt-5 border border-dark border-3">
+                </div>
+#}
+
+
+            </form>
+        </div>
+
+    </div>
+</div>
+
+{% endblock body %}
